@@ -91,12 +91,32 @@ set_constant(myclass, x, y)
 
 unsigned int
 point(myclass, x, y)
-        double x
-        double y
+        unsigned int x
+        unsigned int y
+    INIT:
+        unsigned int n;
+        double x1, y1, x2, y2, xtemp;
+        Julia j;
     CODE:
         dMY_CXT;
-        unsigned int n;
+        j = MY_CXT.julia;
         n = 0;
+        x1 = x * (j.x_max - j.x_min) / j.width  + j.x_min;
+        y1 = y * (j.y_max - j.y_min) / j.height + j.y_min;
+        while (n < j.max_iter) {
+            x2 = x1 * x1;
+            y2 = y1 * y1;
+            if (x2 + y2 > j.limit) {
+                break;
+            }
+            xtemp = x2 - y2 + j.x_const;
+            y1 = 2 * x1 * y1 + j.y_const;
+            x1 = xtemp;
+            n++;
+        }
+        if (n == j.max_iter) {
+            n = 0;
+        }
         RETVAL = n;
     OUTPUT:
         RETVAL
