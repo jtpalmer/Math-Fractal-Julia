@@ -2,7 +2,7 @@ package Math::Fractal::Julia;
 
 # ABSTRACT: Calculate points in the Julia set
 
-use 5.012001;
+use 5.008000;
 use strict;
 use warnings;
 

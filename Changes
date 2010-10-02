@@ -1,6 +1,6 @@
 Revision history for Perl extension Math::Fractal::Julia.
 
-0.01  Sun Sep 26 15:24:53 2010
+0.000001
 	- original version; created by h2xs 1.23 with options
-		-A -n Math::Fractal::Julia
+		-A -b 5.8.0 -n Math::Fractal::Julia
 
