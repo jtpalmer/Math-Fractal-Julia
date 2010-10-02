@@ -4,17 +4,20 @@
 
 #include "ppport.h"
 
-double _limit = 5;
-unsigned int _max_iter = 600;
-double _x_const = 0;
-double _y_const = 0;
-double _x_min = -2.2;
-double _y_min = -1.1;
-double _x_max =  1.0;
-double _y_max =  1.1;
-unsigned int _width  = 640;
-unsigned int _height = 480;
+typedef struct Julia {
+    double limit;
+    unsigned int max_iter;
+    double x_const;
+    double y_const;
+    double x_min;
+    double y_min;
+    double x_max;
+    double y_max;
+    unsigned int width ;
+    unsigned int height;
+} Julia;
 
+Julia myinstance = { 5, 600, 0, 0, -2.2, -1.1, 1.0, 1.1, 640, 480 };
 
 
 MODULE = Math::Fractal::Julia		PACKAGE = Math::Fractal::Julia		
@@ -24,8 +27,8 @@ unsigned int
 set_max_iter(class, max_iter)
         unsigned int max_iter
     CODE:
-        _max_iter = max_iter;
-        RETVAL = _max_iter;
+        myinstance.max_iter = max_iter;
+        RETVAL = myinstance.max_iter;
     OUTPUT:
         RETVAL
 
@@ -33,8 +36,8 @@ double
 set_limit(class, limit)
         double limit
     CODE:
-        _limit = limit;
-        RETVAL = _limit;
+        myinstance.limit = limit;
+        RETVAL = myinstance.limit;
     OUTPUT:
         RETVAL
 
@@ -47,20 +50,20 @@ set_bounds(class, x_min, y_min, x_max, y_max, width, height)
 	unsigned int width
 	unsigned int height
     CODE:
-        _x_min = x_min;
-        _y_min = y_min;
-        _x_max = x_max;
-        _y_max = y_max;
-        _width = width;
-        _height = height;
+        myinstance.x_min = x_min;
+        myinstance.y_min = y_min;
+        myinstance.x_max = x_max;
+        myinstance.y_max = y_max;
+        myinstance.width = width;
+        myinstance.height = height;
 
 void
 set_constant(class, x, y)
         double x
         double y
     CODE:
-	_x_const = x;
-	_y_const = y;
+	myinstance.x_const = x;
+	myinstance.y_const = y;
 
 unsigned int
 point(class, x, y)
