@@ -103,7 +103,7 @@ point(myclass, x, y)
         n = 0;
         x1 = x * (j.x_max - j.x_min) / j.width  + j.x_min;
         y1 = y * (j.y_max - j.y_min) / j.height + j.y_min;
-        while (n < j.max_iter) {
+        while (++n < j.max_iter) {
             x2 = x1 * x1;
             y2 = y1 * y1;
             if (x2 + y2 > j.limit) {
@@ -112,7 +112,6 @@ point(myclass, x, y)
             xtemp = x2 - y2 + j.x_const;
             y1 = 2 * x1 * y1 + j.y_const;
             x1 = xtemp;
-            n++;
         }
         if (n == j.max_iter) {
             n = 0;
