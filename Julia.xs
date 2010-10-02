@@ -5,7 +5,6 @@
 #include "ppport.h"
 
 double _limit = 5;
-double _epsilon = 0.001;
 unsigned int _max_iter = 600;
 double _x_const = 0;
 double _y_const = 0;
@@ -36,15 +35,6 @@ set_limit(class, limit)
     CODE:
         _limit = limit;
         RETVAL = _limit;
-    OUTPUT:
-        RETVAL
-
-double
-set_epsilon(class, epsilon)
-        double epsilon
-    CODE:
-        _epsilon = epsilon;
-        RETVAL = _epsilon;
     OUTPUT:
         RETVAL
 
