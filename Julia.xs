@@ -24,7 +24,7 @@ MODULE = Math::Fractal::Julia		PACKAGE = Math::Fractal::Julia
 PROTOTYPES: ENABLE
 
 unsigned int
-set_max_iter(class, max_iter)
+set_max_iter(myclass, max_iter)
         unsigned int max_iter
     CODE:
         myinstance.max_iter = max_iter;
@@ -33,7 +33,7 @@ set_max_iter(class, max_iter)
         RETVAL
 
 double
-set_limit(class, limit)
+set_limit(myclass, limit)
         double limit
     CODE:
         myinstance.limit = limit;
@@ -42,7 +42,7 @@ set_limit(class, limit)
         RETVAL
 
 void
-set_bounds(class, x_min, y_min, x_max, y_max, width, height)
+set_bounds(myclass, x_min, y_min, x_max, y_max, width, height)
         double x_min
         double y_min
         double x_max
@@ -58,7 +58,7 @@ set_bounds(class, x_min, y_min, x_max, y_max, width, height)
         myinstance.height = height;
 
 void
-set_constant(class, x, y)
+set_constant(myclass, x, y)
         double x
         double y
     CODE:
@@ -66,7 +66,7 @@ set_constant(class, x, y)
 	myinstance.y_const = y;
 
 unsigned int
-point(class, x, y)
+point(myclass, x, y)
         double x
         double y
     CODE:
