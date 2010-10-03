@@ -9,6 +9,23 @@ use warnings;
 require XSLoader;
 XSLoader::load('Math::Fractal::Julia', $Math::Fractal::Julia::VERSION);
 
+sub new {
+    my ($class, %options) = @_;
+
+    my $julia = $class->_new();
+
+    while (my ($key, $value) = each %options) {
+        my $method = 'set_' . $key;
+        if (ref $value) {
+            $julia->$method(@$value);
+        } else {
+            $julia->$method($value);
+        }
+    }
+
+    return $julia;
+}
+
 1;
 __END__
 

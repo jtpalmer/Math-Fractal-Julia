@@ -65,25 +65,6 @@ BOOT:
     MY_CXT.julia.height   = 480;
 } 
 
-Math_Fractal_Julia *
-julia_new(CLASS)
-        char* CLASS
-    CODE:
-        dMY_CXT;
-        RETVAL = (Math_Fractal_Julia *) malloc(sizeof(Math_Fractal_Julia));
-        RETVAL->limit    = MY_CXT.julia.limit;
-        RETVAL->max_iter = MY_CXT.julia.max_iter;
-        RETVAL->x_const  = MY_CXT.julia.x_const;
-        RETVAL->y_const  = MY_CXT.julia.y_const;
-        RETVAL->x_min    = MY_CXT.julia.x_min;
-        RETVAL->y_min    = MY_CXT.julia.y_min;
-        RETVAL->x_max    = MY_CXT.julia.x_max;
-        RETVAL->y_max    = MY_CXT.julia.y_max;
-        RETVAL->width    = MY_CXT.julia.width;
-        RETVAL->height   = MY_CXT.julia.height;
-    OUTPUT:
-        RETVAL
-
 unsigned int
 julia_set_max_iter(myclass, max_iter)
         unsigned int max_iter
@@ -158,6 +139,25 @@ julia_point(myclass, x, y)
             n = 0;
         }
         RETVAL = n;
+    OUTPUT:
+        RETVAL
+
+Math_Fractal_Julia *
+julia__new(CLASS)
+        char* CLASS
+    CODE:
+        dMY_CXT;
+        RETVAL = (Math_Fractal_Julia *) malloc(sizeof(Math_Fractal_Julia));
+        RETVAL->limit    = MY_CXT.julia.limit;
+        RETVAL->max_iter = MY_CXT.julia.max_iter;
+        RETVAL->x_const  = MY_CXT.julia.x_const;
+        RETVAL->y_const  = MY_CXT.julia.y_const;
+        RETVAL->x_min    = MY_CXT.julia.x_min;
+        RETVAL->y_min    = MY_CXT.julia.y_min;
+        RETVAL->x_max    = MY_CXT.julia.x_max;
+        RETVAL->y_max    = MY_CXT.julia.y_max;
+        RETVAL->width    = MY_CXT.julia.width;
+        RETVAL->height   = MY_CXT.julia.height;
     OUTPUT:
         RETVAL
 

@@ -8,12 +8,12 @@ my $width  = 640;
 my $height = 480;
 my $view   = [ -1.6, -1.2, 1.6, 1.2 ];    # [ min_x, $min_y, $max_x, $max_y]
 
-my $julia = Math::Fractal::Julia->new();
-$julia->set_max_iter(255);
-$julia->set_bounds( @$view, $width, $height );
-
 # See http://en.wikipedia.org/wiki/File:Julia_set_%28ice%29.png
-$julia->set_constant( -0.726895347709114071439, 0.188887129043845954792 );
+my $julia = Math::Fractal::Julia->new(
+    max_iter => 255,
+    bounds   => [ @$view, $width, $height ],
+    constant => [ -0.726895347709114071439, 0.188887129043845954792 ],
+);
 
 my @palette = map { [ $_, $_, $_ ] } 0 .. 255;
 $palette[0] = [ 255, 255, 255 ];
