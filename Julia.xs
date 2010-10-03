@@ -25,7 +25,7 @@ typedef struct {
 
 START_MY_CXT
 
-MODULE = Math::Fractal::Julia		PACKAGE = Math::Fractal::Julia		
+MODULE = Math::Fractal::Julia	PACKAGE = Math::Fractal::Julia	PREFIX = julia_
 PROTOTYPES: ENABLE
 
 BOOT:
@@ -44,7 +44,7 @@ BOOT:
 } 
 
 unsigned int
-set_max_iter(myclass, max_iter)
+julia_set_max_iter(myclass, max_iter)
         unsigned int max_iter
     CODE:
         dMY_CXT;
@@ -54,7 +54,7 @@ set_max_iter(myclass, max_iter)
         RETVAL
 
 double
-set_limit(myclass, limit)
+julia_set_limit(myclass, limit)
         double limit
     CODE:
         dMY_CXT;
@@ -64,7 +64,7 @@ set_limit(myclass, limit)
         RETVAL
 
 void
-set_bounds(myclass, x_min, y_min, x_max, y_max, width, height)
+julia_set_bounds(myclass, x_min, y_min, x_max, y_max, width, height)
         double x_min
         double y_min
         double x_max
@@ -81,7 +81,7 @@ set_bounds(myclass, x_min, y_min, x_max, y_max, width, height)
         MY_CXT.julia.height = height;
 
 void
-set_constant(myclass, x, y)
+julia_set_constant(myclass, x, y)
         double x
         double y
     CODE:
@@ -90,7 +90,7 @@ set_constant(myclass, x, y)
 	MY_CXT.julia.y_const = y;
 
 unsigned int
-point(myclass, x, y)
+julia_point(myclass, x, y)
         unsigned int x
         unsigned int y
     INIT:
