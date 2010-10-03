@@ -6,77 +6,89 @@ use 5.008000;
 use strict;
 use warnings;
 
-require Exporter;
-
-our @ISA = qw(Exporter);
-
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
-
-# This allows declaration use Math::Fractal::Julia ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
-our %EXPORT_TAGS = ( 'all' => [ qw( ) ] );
-
-our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
-
-our @EXPORT = qw( );
-
 require XSLoader;
 XSLoader::load('Math::Fractal::Julia', $Math::Fractal::Julia::VERSION);
 
-# Preloaded methods go here.
-
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
-
-=head1 NAME
-
-Math::Fractal::Julia - Perl extension for blah blah blah
 
 =head1 SYNOPSIS
 
   use Math::Fractal::Julia;
-  blah blah blah
+
+  # Procedural usage (like Math::Fractal::Mandelbrot):
+  Math::Fractal::Julia->set_max_iter($iters);
+  Math::Fractal::Julia->set_limit($limit);
+  Math::Fractal::Julia->set_bounds( $x1, $y1, $x2, $y2, $w, $h );
+  Math::Fractal::Julia->set_constant( $cx, $cy );
+  my $iter = Math::Fractal::Julia->point( $x, $y );
+
+  # Object Oriented usage:
+  my $julia = Math::Fractal::Julia->new(%options);
+  $julia->set_max_iter($iters);
+  $julia->set_limit($limit);
+  $julia->set_bounds( $x1, $y1, $x2, $y2, $w, $h );
+  $julia->set_constant( $cx, $cy );
+  my $iter = $julia->point( $x, $y );
 
 =head1 DESCRIPTION
 
-Stub documentation for Math::Fractal::Julia, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+Calculates points in the set named after the French mathematician Gaston
+Julia.
 
-Blah blah blah.
+=head1 METHODS
 
-=head2 EXPORT
+=head2 new()
 
-None by default.
+=head2 new(%options)
 
+  my $julia = Math::Fractal::Julia->new();
+  my $julia = Math::Fractal::Julia->new(%options);
 
+Creates a new Math::Fractal::Object.  If no options are provided, the default
+values will be used.
+
+Options:
+
+=over 4
+
+=item * max_iter => $iters
+
+=item * limit => $limit
+
+=item * bounds => [ $x1, $x2, $y1, $y2, $width, $height ]
+
+=item * constant => [ $cx, $cy ]
+
+=back
+
+=head2 set_max_iter($max)
+
+  Math::Fractal::Julia->set_max_iter($max);
+  $julia->set_max_iter($max);
+
+=head2 set_limit($limit)
+
+  Math::Fractal::Julia->set_limit($limit);
+  $julia->set_limit($limit);
+
+=head2 set_bounds( $x1, $x2, $y1, $y2, $width, $height )
+
+  Math::Fractal::Julia->set_bounds( $x1, $x2, $y1, $y2, $width, $height );
+  $julia->set_bounds( $x1, $x2, $y1, $y2, $width, $height );
+
+=head2 set_constant( $cx, $cy )
+
+  Math::Fractal::Julia->set_constant( $cx, $cy );
+  $julia->set_constant( $cx, $cy );
+
+=head2 point( $x, $y )
+
+  $iter = Math::Fractal::Julia->point( $x, $y );
+  $iter = $julia->point( $x, $y );
 
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
-
-If you have a mailing list set up for your module, mention it here.
-
-If you have a web site set up for your module, mention it here.
-
-=head1 AUTHOR
-
-Jeffrey T. Palmer, E<lt>jtpalmer@cpan.orgE<gt>
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2010 by Jeffrey T. Palmer
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.12.1 or,
-at your option, any later version of Perl 5 you may have available.
-
+L<Math::Fractal::Mandelbrot>
 
 =cut
