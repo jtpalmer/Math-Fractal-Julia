@@ -115,30 +115,9 @@ unsigned int
 julia_point(myclass, x, y)
         unsigned int x
         unsigned int y
-    INIT:
-        unsigned int n;
-        double x1, y1, x2, y2, xtemp;
-        Math_Fractal_Julia j;
     CODE:
         dMY_CXT;
-        j = MY_CXT.julia;
-        n = 0;
-        x1 = x * (j.x_max - j.x_min) / j.width  + j.x_min;
-        y1 = y * (j.y_max - j.y_min) / j.height + j.y_min;
-        while (++n < j.max_iter) {
-            x2 = x1 * x1;
-            y2 = y1 * y1;
-            if (x2 + y2 > j.limit) {
-                break;
-            }
-            xtemp = x2 - y2 + j.x_const;
-            y1 = 2 * x1 * y1 + j.y_const;
-            x1 = xtemp;
-        }
-        if (n == j.max_iter) {
-            n = 0;
-        }
-        RETVAL = n;
+        RETVAL = _point(&MY_CXT.julia, x, y);
     OUTPUT:
         RETVAL
 
