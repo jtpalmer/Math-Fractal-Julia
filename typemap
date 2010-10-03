@@ -1,0 +1,2 @@
+TYPEMAP
+Math_Fractal_Julia *	T_PTROBJ

@@ -4,7 +4,7 @@
 
 #include "ppport.h"
 
-typedef struct Julia {
+typedef struct Math_Fractal_Julia {
     double limit;
     unsigned int max_iter;
     double x_const;
@@ -15,12 +15,12 @@ typedef struct Julia {
     double y_max;
     unsigned int width ;
     unsigned int height;
-} Julia;
+} Math_Fractal_Julia;
 
 #define MY_CXT_KEY "Math::Fractal::Julia::_guts" XS_VERSION
 
 typedef struct {
-    Julia julia;
+    Math_Fractal_Julia julia;
 } my_cxt_t;
 
 START_MY_CXT
@@ -42,6 +42,31 @@ BOOT:
     MY_CXT.julia.width    = 640;
     MY_CXT.julia.height   = 480;
 } 
+
+Math_Fractal_Julia *
+julia_new(CLASS)
+        char* CLASS
+    CODE:
+        dMY_CXT;
+        RETVAL = (Math_Fractal_Julia *) malloc(sizeof(Math_Fractal_Julia));
+        RETVAL->limit    = MY_CXT.julia.limit;
+        RETVAL->max_iter = MY_CXT.julia.max_iter;
+        RETVAL->x_const  = MY_CXT.julia.x_const;
+        RETVAL->y_const  = MY_CXT.julia.y_const;
+        RETVAL->x_min    = MY_CXT.julia.x_min;
+        RETVAL->y_min    = MY_CXT.julia.y_min;
+        RETVAL->x_max    = MY_CXT.julia.x_max;
+        RETVAL->y_max    = MY_CXT.julia.y_max;
+        RETVAL->width    = MY_CXT.julia.width;
+        RETVAL->height   = MY_CXT.julia.height;
+    OUTPUT:
+        RETVAL
+
+void
+julia_DESTROY(j)
+        Math_Fractal_Julia *j
+    CODE:
+        free(j);
 
 unsigned int
 julia_set_max_iter(myclass, max_iter)
@@ -96,7 +121,7 @@ julia_point(myclass, x, y)
     INIT:
         unsigned int n;
         double x1, y1, x2, y2, xtemp;
-        Julia j;
+        Math_Fractal_Julia j;
     CODE:
         dMY_CXT;
         j = MY_CXT.julia;
