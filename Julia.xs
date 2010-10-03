@@ -13,7 +13,7 @@ typedef struct Math_Fractal_Julia {
     double y_min;
     double x_max;
     double y_max;
-    unsigned int width ;
+    unsigned int width;
     unsigned int height;
 } Math_Fractal_Julia;
 
@@ -33,8 +33,8 @@ BOOT:
     MY_CXT_INIT;
     MY_CXT.julia.limit    = 5;
     MY_CXT.julia.max_iter = 600;
-    MY_CXT.julia.x_const  = 0;
-    MY_CXT.julia.y_const  = 0;
+    MY_CXT.julia.x_const  = 0.0;
+    MY_CXT.julia.y_const  = 0.0;
     MY_CXT.julia.x_min    = -2.2;
     MY_CXT.julia.y_min    = -1.1;
     MY_CXT.julia.x_max    = 1.0;
