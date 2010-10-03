@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 3;
+use Test::More tests => 5;
 BEGIN { use_ok('Math::Fractal::Julia') }
 
 can_ok( 'Math::Fractal::Julia',
@@ -14,3 +14,10 @@ eval {
 if ($@) {
     fail('Math::Fractal::Julia->new()');
 }
+
+my $julia = Math::Fractal::Julia->new();
+
+isa_ok($julia, 'Math::Fractal::Julia');
+
+is($julia->set_max_iter(4), 4);
+

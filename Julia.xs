@@ -69,17 +69,28 @@ julia_DESTROY(j)
         free(j);
 
 unsigned int
-julia_set_max_iter(myclass, max_iter)
+julia_set_max_iter(self, max_iter)
+        SV * self
         unsigned int max_iter
+    PREINIT:
+        char* CLASS = "Math::Fractal::Julia";
+    INIT:
+        Math_Fractal_Julia *j;
+
+        if (sv_isobject(self) && sv_derived_from(self, CLASS)) {
+            j = self;
+        } else {
+            dMY_CXT;
+            j = &MY_CXT.julia;
+        }
     CODE:
-        dMY_CXT;
-        MY_CXT.julia.max_iter = max_iter;
-        RETVAL = MY_CXT.julia.max_iter;
+        j->max_iter = max_iter;
+        RETVAL = j->max_iter;
     OUTPUT:
         RETVAL
 
 double
-julia_set_limit(myclass, limit)
+julia_set_limit(self, limit)
         double limit
     CODE:
         dMY_CXT;
@@ -89,7 +100,7 @@ julia_set_limit(myclass, limit)
         RETVAL
 
 void
-julia_set_bounds(myclass, x_min, y_min, x_max, y_max, width, height)
+julia_set_bounds(self, x_min, y_min, x_max, y_max, width, height)
         double x_min
         double y_min
         double x_max
@@ -106,7 +117,7 @@ julia_set_bounds(myclass, x_min, y_min, x_max, y_max, width, height)
         MY_CXT.julia.height = height;
 
 void
-julia_set_constant(myclass, x, y)
+julia_set_constant(self, x, y)
         double x
         double y
     CODE:
@@ -115,7 +126,7 @@ julia_set_constant(myclass, x, y)
 	MY_CXT.julia.y_const = y;
 
 unsigned int
-julia_point(myclass, x, y)
+julia_point(self, x, y)
         unsigned int x
         unsigned int y
     INIT:
