@@ -12,4 +12,4 @@ T_PTROBJ_SPECIAL
 
 OUTPUT
 T_PTROBJ_SPECIAL
-    sv_setref_pv($arg, CLASS, (void*)$var);
+    sv_setref_pv($arg, \"${(my $ntt=$ntype)=~s/_/::/g;\$ntt}\", (void*)$var);

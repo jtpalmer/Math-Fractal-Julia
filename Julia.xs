@@ -17,6 +17,28 @@ typedef struct Math_Fractal_Julia {
     unsigned int height;
 } Math_Fractal_Julia;
 
+unsigned int _point(Math_Fractal_Julia *j, unsigned int x, unsigned int y) {
+    unsigned int n;
+    double x1, y1, x2, y2, xtemp;
+    n = 0;
+    x1 = x * (j->x_max - j->x_min) / j->width  + j->x_min;
+    y1 = y * (j->y_max - j->y_min) / j->height + j->y_min;
+    while (++n < j->max_iter) {
+        x2 = x1 * x1;
+        y2 = y1 * y1;
+        if (x2 + y2 > j->limit) {
+            break;
+        }
+        xtemp = x2 - y2 + j->x_const;
+        y1 = 2 * x1 * y1 + j->y_const;
+        x1 = xtemp;
+    }
+    if (n == j->max_iter) {
+        n = 0;
+    }
+    return n;
+}
+
 #define MY_CXT_KEY "Math::Fractal::Julia::_guts" XS_VERSION
 
 typedef struct {
@@ -62,35 +84,18 @@ julia_new(CLASS)
     OUTPUT:
         RETVAL
 
-void
-julia_DESTROY(j)
-        Math_Fractal_Julia *j
-    CODE:
-        free(j);
-
 unsigned int
-julia_set_max_iter(self, max_iter)
-        SV * self
+julia_set_max_iter(myclass, max_iter)
         unsigned int max_iter
-    PREINIT:
-        char* CLASS = "Math::Fractal::Julia";
-    INIT:
-        Math_Fractal_Julia *j;
-
-        if (sv_isobject(self) && sv_derived_from(self, CLASS)) {
-            j = self;
-        } else {
-            dMY_CXT;
-            j = &MY_CXT.julia;
-        }
     CODE:
-        j->max_iter = max_iter;
-        RETVAL = j->max_iter;
+        dMY_CXT;
+        MY_CXT.julia.max_iter = max_iter;
+        RETVAL = MY_CXT.julia.max_iter;
     OUTPUT:
         RETVAL
 
 double
-julia_set_limit(self, limit)
+julia_set_limit(myclass, limit)
         double limit
     CODE:
         dMY_CXT;
@@ -100,7 +105,7 @@ julia_set_limit(self, limit)
         RETVAL
 
 void
-julia_set_bounds(self, x_min, y_min, x_max, y_max, width, height)
+julia_set_bounds(myclass, x_min, y_min, x_max, y_max, width, height)
         double x_min
         double y_min
         double x_max
@@ -117,7 +122,7 @@ julia_set_bounds(self, x_min, y_min, x_max, y_max, width, height)
         MY_CXT.julia.height = height;
 
 void
-julia_set_constant(self, x, y)
+julia_set_constant(myclass, x, y)
         double x
         double y
     CODE:
@@ -126,7 +131,7 @@ julia_set_constant(self, x, y)
 	MY_CXT.julia.y_const = y;
 
 unsigned int
-julia_point(self, x, y)
+julia_point(myclass, x, y)
         unsigned int x
         unsigned int y
     INIT:
@@ -155,3 +160,67 @@ julia_point(self, x, y)
         RETVAL = n;
     OUTPUT:
         RETVAL
+
+MODULE = Math::Fractal::Julia	PACKAGE = Math::Fractal::JuliaPtr	PREFIX = juliaptr_
+
+unsigned int
+juliaptr_set_max_iter(self, max_iter)
+        Math_Fractal_Julia *self
+        unsigned int max_iter
+    CODE:
+        self->max_iter = max_iter;
+        RETVAL = self->max_iter;
+    OUTPUT:
+        RETVAL
+
+double
+juliaptr_set_limit(self, limit)
+        Math_Fractal_Julia *self
+        double limit
+    CODE:
+        self->limit = limit;
+        RETVAL = self->limit;
+    OUTPUT:
+        RETVAL
+
+void
+juliaptr_set_bounds(self, x_min, y_min, x_max, y_max, width, height)
+        Math_Fractal_Julia *self
+        double x_min
+        double y_min
+        double x_max
+        double y_max
+        unsigned int width
+        unsigned int height
+    CODE:
+        self->x_min = x_min;
+        self->y_min = y_min;
+        self->x_max = x_max;
+        self->y_max = y_max;
+        self->width = width;
+        self->height = height;
+
+void
+juliaptr_set_constant(self, x_const, y_const)
+        Math_Fractal_Julia *self
+        double x_const
+        double y_const
+    CODE:
+        self->x_const = x_const;
+        self->y_const = y_const;
+
+double
+juliaptr_point(self, x, y)
+        Math_Fractal_Julia *self
+        unsigned int x
+        unsigned int y
+    CODE:
+        RETVAL = _point(self, x, y);
+    OUTPUT:
+        RETVAL
+
+void
+juliaptr_DESTROY(self)
+        Math_Fractal_Julia *self
+    CODE:
+        free(self);
