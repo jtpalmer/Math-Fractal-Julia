@@ -40,16 +40,16 @@ unsigned int _point(Math_Fractal_Julia *j, unsigned int x, unsigned int y) {
 }
 
 static Math_Fractal_Julia julia = {
-    5,    /* limit */
-    600,  /* max_iter */
-    0.0,  /* x_const */
-    0.0,  /* y_const */
-    -2.2, /* x_min */
-    -1.1, /* y_min */
-    1.0,  /* x_max */
-    1.1,  /* y_max */
-    640,  /* width */
-    480   /* height */
+    5,       /* limit */
+    600,     /* max_iter */
+    0.0,     /* x_const */
+    0.0,     /* y_const */
+    -2.2,    /* x_min */
+    -1.1,    /* y_min */
+    1.0,     /* x_max */
+    1.1,     /* y_max */
+    640,     /* width */
+    480      /* height */
 };
 
 MODULE = Math::Fractal::Julia	PACKAGE = Math::Fractal::Julia	PREFIX = julia_
