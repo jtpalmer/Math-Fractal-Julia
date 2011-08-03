@@ -63,7 +63,7 @@ BOOT:
     MY_CXT.julia.y_max    = 1.1;
     MY_CXT.julia.width    = 640;
     MY_CXT.julia.height   = 480;
-} 
+}
 
 unsigned int
 julia_set_max_iter(myclass, max_iter)
@@ -203,3 +203,4 @@ juliaptr_DESTROY(self)
         Math_Fractal_Julia *self
     CODE:
         free(self);
+
