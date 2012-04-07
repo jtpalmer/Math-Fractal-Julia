@@ -27,6 +27,7 @@ sub new {
 }
 
 1;
+
 __END__
 
 =head1 SYNOPSIS
@@ -62,8 +63,8 @@ Julia.
   my $julia = Math::Fractal::Julia->new();
   my $julia = Math::Fractal::Julia->new(%options);
 
-Creates a new Math::Fractal::Object.  If no options are provided, the default
-values will be used.
+Creates a new Math::Fractal::Object.  If no options are provided, the
+default values will be used.
 
 Options:
 
@@ -109,3 +110,4 @@ Options:
 L<Math::Fractal::Mandelbrot>
 
 =cut
+
