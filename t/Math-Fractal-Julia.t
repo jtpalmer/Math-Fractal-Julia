@@ -2,7 +2,7 @@ use strict;
 use warnings;
 
 use Test::More tests => 8;
-BEGIN { use_ok('Math::Fractal::Julia') }
+use Math::Fractal::Julia;
 
 can_ok( 'Math::Fractal::Julia',
     qw( new set_max_iter set_limit set_bounds set_constant ) );
