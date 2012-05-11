@@ -1,7 +1,7 @@
+#!perl
 use strict;
 use warnings;
-
-use Test::More tests => 8;
+use Test::More;
 use Math::Fractal::Julia;
 
 can_ok( 'Math::Fractal::Julia',
@@ -50,3 +50,6 @@ eval {
 if ($@) {
     fail('point()');
 }
+
+done_testing();
+
