@@ -1,7 +1,6 @@
-#!/usr/bin/env perl
+#!perl
 use strict;
 use warnings;
-
 use Math::Fractal::Julia;
 use Imager;
 
@@ -29,3 +28,4 @@ foreach my $y ( 0 .. $height - 1 ) {
 }
 
 $img->write( file => 'julia.png' );
+
