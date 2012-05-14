@@ -1,6 +1,7 @@
 Revision history for Math-Fractal-Julia.
 
 {{$NEXT}}
+    - Upgraded ppport.h
     - Bumped copyright year
     - Refactored tests
     - Removed accidentally included perltidy.rc file
