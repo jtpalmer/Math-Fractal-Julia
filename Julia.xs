@@ -1,7 +1,6 @@
 #include "EXTERN.h"
 #include "perl.h"
 #include "XSUB.h"
-
 #include "ppport.h"
 
 typedef struct Math_Fractal_Julia {
@@ -110,7 +109,7 @@ Math_Fractal_Julia *
 julia__new(CLASS)
         char* CLASS
     CODE:
-        RETVAL = (Math_Fractal_Julia *) malloc(sizeof(Math_Fractal_Julia));
+        Newx(RETVAL, 1, Math_Fractal_Julia);
         RETVAL->limit    = julia.limit;
         RETVAL->max_iter = julia.max_iter;
         RETVAL->x_const  = julia.x_const;
@@ -186,5 +185,5 @@ void
 juliaptr_DESTROY(self)
         Math_Fractal_Julia *self
     CODE:
-        free(self);
+        Safefree(self);
 
