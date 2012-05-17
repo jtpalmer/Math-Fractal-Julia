@@ -7,18 +7,19 @@ use strict;
 use warnings;
 
 require XSLoader;
-XSLoader::load('Math::Fractal::Julia', $Math::Fractal::Julia::VERSION);
+XSLoader::load( 'Math::Fractal::Julia', $Math::Fractal::Julia::VERSION );
 
 sub new {
-    my ($class, %options) = @_;
+    my ( $class, %options ) = @_;
 
     my $julia = $class->_new();
 
-    while (my ($key, $value) = each %options) {
+    while ( my ( $key, $value ) = each %options ) {
         my $method = 'set_' . $key;
-        if (ref $value) {
+        if ( ref $value ) {
             $julia->$method(@$value);
-        } else {
+        }
+        else {
             $julia->$method($value);
         }
     }
