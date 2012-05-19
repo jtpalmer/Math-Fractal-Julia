@@ -20,8 +20,8 @@ $palette[0] = [ 255, 255, 255 ];
 
 my $img = Imager->new( xsize => $width, ysize => $height );
 
-foreach my $y ( 0 .. $height - 1 ) {
-    foreach my $x ( 0 .. $width - 1 ) {
+for my $y ( 0 .. $height - 1 ) {
+    for my $x ( 0 .. $width - 1 ) {
         my $iter = $julia->point( $x, $height - $y - 1 );
         $img->setpixel( x => $x, y => $y, color => $palette[$iter] );
     }
