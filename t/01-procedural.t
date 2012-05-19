@@ -31,13 +31,9 @@ eval {
     fail('set_constant');
 };
 
-eval {
-    Math::Fractal::Julia->point( 1, 1 );
-    pass('point');
-    1;
-} or do {
-    fail('point');
-};
+is( Math::Fractal::Julia->point( 320, 240 ), 0, 'point' );
+
+isnt( Math::Fractal::Julia->point( 0, 0 ), 0, 'point' );
 
 done_testing();
 

@@ -39,13 +39,9 @@ eval {
     fail('set_constant');
 };
 
-eval {
-    $julia->point( 1, 1 );
-    pass('point');
-    1;
-} or do {
-    fail('point');
-};
+is( $julia->point( 320, 240 ), 0, 'point' );
+
+isnt( $julia->point( 0, 0 ), 0, 'point' );
 
 done_testing();
 
