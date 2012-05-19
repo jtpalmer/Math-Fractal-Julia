@@ -4,16 +4,14 @@ use warnings;
 use Test::More;
 use Math::Fractal::Julia;
 
-can_ok( 'Math::Fractal::Julia', qw( new ) );
-
-can_ok( 'Math::Fractal::JuliaPtr',
-    qw( set_max_iter set_limit set_bounds set_constant ) );
+can_ok( 'Math::Fractal::Julia',
+    qw( new set_max_iter set_limit set_bounds set_constant ) );
 
 my $julia = Math::Fractal::Julia->new();
 
 ok( $julia, 'new' );
 
-isa_ok( $julia, 'Math::Fractal::JuliaPtr' );
+isa_ok( $julia, 'Math::Fractal::Julia' );
 
 eval {
     $julia->set_max_iter(4);

@@ -54,57 +54,6 @@ static Math_Fractal_Julia julia = {
 MODULE = Math::Fractal::Julia	PACKAGE = Math::Fractal::Julia	PREFIX = julia_
 PROTOTYPES: ENABLE
 
-unsigned int
-julia_set_max_iter(myclass, max_iter)
-        unsigned int max_iter
-    CODE:
-        julia.max_iter = max_iter;
-        RETVAL = julia.max_iter;
-    OUTPUT:
-        RETVAL
-
-double
-julia_set_limit(myclass, limit)
-        double limit
-    CODE:
-        julia.limit = limit;
-        RETVAL = julia.limit;
-    OUTPUT:
-        RETVAL
-
-void
-julia_set_bounds(myclass, x_min, y_min, x_max, y_max, width, height)
-        double x_min
-        double y_min
-        double x_max
-        double y_max
-	unsigned int width
-	unsigned int height
-    CODE:
-        julia.x_min = x_min;
-        julia.y_min = y_min;
-        julia.x_max = x_max;
-        julia.y_max = y_max;
-        julia.width = width;
-        julia.height = height;
-
-void
-julia_set_constant(myclass, x, y)
-        double x
-        double y
-    CODE:
-	julia.x_const = x;
-	julia.y_const = y;
-
-unsigned int
-julia_point(myclass, x, y)
-        unsigned int x
-        unsigned int y
-    CODE:
-        RETVAL = _point(&julia, x, y);
-    OUTPUT:
-        RETVAL
-
 Math_Fractal_Julia *
 julia__new(CLASS)
         char* CLASS
@@ -123,10 +72,8 @@ julia__new(CLASS)
     OUTPUT:
         RETVAL
 
-MODULE = Math::Fractal::Julia	PACKAGE = Math::Fractal::JuliaPtr	PREFIX = juliaptr_
-
 unsigned int
-juliaptr_set_max_iter(self, max_iter)
+julia_set_max_iter(self, max_iter)
         Math_Fractal_Julia *self
         unsigned int max_iter
     CODE:
@@ -136,7 +83,7 @@ juliaptr_set_max_iter(self, max_iter)
         RETVAL
 
 double
-juliaptr_set_limit(self, limit)
+julia_set_limit(self, limit)
         Math_Fractal_Julia *self
         double limit
     CODE:
@@ -146,7 +93,7 @@ juliaptr_set_limit(self, limit)
         RETVAL
 
 void
-juliaptr_set_bounds(self, x_min, y_min, x_max, y_max, width, height)
+julia_set_bounds(self, x_min, y_min, x_max, y_max, width, height)
         Math_Fractal_Julia *self
         double x_min
         double y_min
@@ -163,7 +110,7 @@ juliaptr_set_bounds(self, x_min, y_min, x_max, y_max, width, height)
         self->height = height;
 
 void
-juliaptr_set_constant(self, x_const, y_const)
+julia_set_constant(self, x_const, y_const)
         Math_Fractal_Julia *self
         double x_const
         double y_const
@@ -172,7 +119,7 @@ juliaptr_set_constant(self, x_const, y_const)
         self->y_const = y_const;
 
 double
-juliaptr_point(self, x, y)
+julia_point(self, x, y)
         Math_Fractal_Julia *self
         unsigned int x
         unsigned int y
@@ -182,7 +129,7 @@ juliaptr_point(self, x, y)
         RETVAL
 
 void
-juliaptr_DESTROY(self)
+julia_DESTROY(self)
         Math_Fractal_Julia *self
     CODE:
         Safefree(self);
