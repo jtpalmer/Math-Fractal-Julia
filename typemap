@@ -3,6 +3,10 @@ Math_Fractal_Julia *	O_JULIA
 
 INPUT
 
+# If the perl argument is a blessed reference cast it to a
+# Math_Fractal_Julia *.  If the argument is "Math::Fractal::Julia" or
+# the name of a class derived from Math::Fractal::Julia use the default
+# julia struct.
 O_JULIA
     if (SvROK($arg)) {
         if (sv_isobject($arg) && (SvTYPE(SvRV($arg)) == SVt_PVMG)) {
@@ -29,6 +33,8 @@ O_JULIA
 
 OUTPUT
 
+# The Perl object is blessed into "CLASS", which should be a char *
+# having the name of the package for the blessing.
 O_JULIA
     sv_setref_pv($arg, CLASS, (void *)$var);
 
