@@ -1,6 +1,7 @@
 Revision history for Math-Fractal-Julia.
 
 {{$NEXT}}
+    - Improved documentation
     - Refactored XS
     - Upgraded ppport.h
     - Bumped copyright year
