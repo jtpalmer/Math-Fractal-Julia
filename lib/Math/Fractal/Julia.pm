@@ -1,5 +1,4 @@
 package Math::Fractal::Julia;
-use 5.008000;
 use strict;
 use warnings;
 
