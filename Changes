@@ -1,6 +1,8 @@
 Revision history for Math-Fractal-Julia.
 
 {{$NEXT}}
+    - Removed Perl version requirement
+    - Added pod coverage tests
     - Improved documentation
     - Refactored XS
     - Upgraded ppport.h
