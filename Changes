@@ -1,6 +1,8 @@
 Revision history for Math-Fractal-Julia.
 
 {{$NEXT}}
+    - Improved documentation
+    - Added minimum Perl version requirement
 
 0.000002 2012-06-20
     - Removed Perl version requirement
