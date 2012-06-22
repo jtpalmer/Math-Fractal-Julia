@@ -76,25 +76,40 @@ L<Math::Fractal::Mandelbrot>.
 
 =back
 
-Options:
+Creates a new Math::Fractal::Object.  If no options are provided, the
+default values will be used.
 
 =over 4
 
-=item * max_iter => $iters
+=item options
 
-=item * limit => $limit
+The C<options> hash may contain any or all of the following:
 
-=item * bounds => [ $x1, $x2, $y1, $y2, $width, $height ]
+max_iter => $iters
 
-=item * constant => [ $cx, $cy ]
+limit => $limit
+
+bounds => [ $x1, $x2, $y1, $y2, $width, $height ]
+
+constant => [ $cx, $cy ]
 
 =back
 
+The default maximum number of iterations is 600.
+The default limit is 5.
+The default bounds is [-2.2, -1.1, 1.0, 1.1, 640, 480].
+The default constant is [0.0, 0.0].
+
     my $julia = Math::Fractal::Julia->new();
+
     my $julia = Math::Fractal::Julia->new(%options);
 
-Creates a new Math::Fractal::Object.  If no options are provided, the
-default values will be used.
+    my $julia = Math::Fractal::Julia->new(
+        max_iter => $iters,
+        limit    => $limit,
+        bounds   => [ $x1, $x2, $y1, $y2, $width, $height ],
+        constant => [ $cx, $cy ],
+    );
 
 =head2 set_max_iter
 
@@ -106,10 +121,11 @@ default values will be used.
 
 =back
 
-    Math::Fractal::Julia->set_max_iter($max);
-    $julia->set_max_iter($max);
-
 Set the maximum number of iterations.  The default value is 600.
+
+    Math::Fractal::Julia->set_max_iter($max);
+
+    $julia->set_max_iter($max);
 
 =head2 set_limit
 
@@ -121,10 +137,11 @@ Set the maximum number of iterations.  The default value is 600.
 
 =back
 
-    Math::Fractal::Julia->set_limit($limit);
-    $julia->set_limit($limit);
-
 The default value is 5.
+
+    Math::Fractal::Julia->set_limit($limit);
+
+    $julia->set_limit($limit);
 
 =head2 set_bounds
 
@@ -136,13 +153,15 @@ The default value is 5.
 
 =back
 
-    Math::Fractal::Julia->set_bounds( $x1, $y1, $x2, $y2, $width, $height );
-    $julia->set_bounds( $x1, $x2, $y1, $y2, $width, $height );
-
 Set the bounds of the set.  The first four values (C<$x1>, C<$y1>,
 C<$x2>, C<$y2>) define a rectangle.  The remaining two (C<$width>,
 C<$height>) define a viewport.
+
 The default values are (-2.2, -1.1, 1.0, 1.1, 640, 480).
+
+    Math::Fractal::Julia->set_bounds( $x1, $y1, $x2, $y2, $width, $height );
+
+    $julia->set_bounds( $x1, $x2, $y1, $y2, $width, $height );
 
 =head2 set_constant
 
@@ -154,10 +173,11 @@ The default values are (-2.2, -1.1, 1.0, 1.1, 640, 480).
 
 =back
 
-    Math::Fractal::Julia->set_constant( $cx, $cy );
-    $julia->set_constant( $cx, $cy );
-
 The default values are (0.0, 0.0).
+
+    Math::Fractal::Julia->set_constant( $cx, $cy );
+
+    $julia->set_constant( $cx, $cy );
 
 =head2 point
 
@@ -170,13 +190,14 @@ or 0 if the the limit is not exceeded.
 
 =back
 
-    $iter = Math::Fractal::Julia->point( $x, $y );
-    $iter = $julia->point( $x, $y );
-
 This function translates the coordinates using the bounds and then
 iterates.
 
-=head1 BUGS AND LIMITATIONS
+    $iters = Math::Fractal::Julia->point( $x, $y );
+
+    $iters = $julia->point( $x, $y );
+
+=head1 CAVEATS
 
 =over 4
 
@@ -197,7 +218,7 @@ internal state when used procedurally.
 
 =item * L<Math::Fractal::Mandelbrot>
 
-=item * L<http://en.wikipedia.org/wiki/Julia_set>
+=item * L<Julia set|http://en.wikipedia.org/wiki/Julia_set>
 
 =back
 
