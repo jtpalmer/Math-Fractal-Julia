@@ -102,6 +102,8 @@ default values will be used.
 
 =item Arguments: $max
 
+=item Return value: undefined
+
 =back
 
     Math::Fractal::Julia->set_max_iter($max);
@@ -115,6 +117,8 @@ Set the maximum number of iterations.  The default value is 600.
 
 =item Arguments: $limit
 
+=item Return value: undefined
+
 =back
 
     Math::Fractal::Julia->set_limit($limit);
@@ -127,6 +131,8 @@ The default value is 5.
 =over 4
 
 =item Arguments: $x1, $y1, $x2, $y2, $width, $height
+
+=item Return value: undefined
 
 =back
 
@@ -143,6 +149,8 @@ The default values are (-2.2, -1.1, 1.0, 1.1, 640, 480).
 =over 4
 
 =item Arguments: $cx, $cy
+
+=item Return value: undefined
 
 =back
 
