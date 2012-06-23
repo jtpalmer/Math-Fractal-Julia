@@ -208,7 +208,7 @@ This module is not thread-safe.
 =item *
 
 Any packages derived from C<Math::Fractal::Julia> will share the same
-internal state when used procedurally.
+internal state when the procedural interface is used.
 
 =back
 
