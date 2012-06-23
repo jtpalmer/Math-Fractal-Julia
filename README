@@ -2,7 +2,7 @@ NAME
     Math::Fractal::Julia - Calculate points in the Julia set
 
 VERSION
-    version 0.000002
+    version 0.000003
 
 SYNOPSIS
         use Math::Fractal::Julia;
@@ -131,7 +131,7 @@ CAVEATS
     *   This module is not thread-safe.
 
     *   Any packages derived from "Math::Fractal::Julia" will share the same
-        internal state when used procedurally.
+        internal state when the procedural interface is used.
 
 SEE ALSO
     *   Math::Fractal::Mandelbrot
