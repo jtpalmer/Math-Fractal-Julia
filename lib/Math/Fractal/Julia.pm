@@ -1,8 +1,9 @@
 package Math::Fractal::Julia;
-use strict;
-use warnings;
 
 # ABSTRACT: Calculate points in the Julia set
+
+use strict;
+use warnings;
 
 require XSLoader;
 XSLoader::load( 'Math::Fractal::Julia', $Math::Fractal::Julia::VERSION );
