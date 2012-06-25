@@ -45,11 +45,12 @@ __END__
     }
 
     # Object Oriented usage:
-    my $julia = Math::Fractal::Julia->new(%options);
-    $julia->set_max_iter($iters);
-    $julia->set_limit($limit);
-    $julia->set_bounds( $x1, $y1, $x2, $y2, $w, $h );
-    $julia->set_constant( $cx, $cy );
+    my $julia = Math::Fractal::Julia->new(
+        max_iter => $iters,
+        limit    => $limit,
+        bounds   => [ $x1, $x2, $y1, $y2, $width, $height ],
+        constant => [ $cx, $cy ],
+    );
     for my $y ( 0 .. $h - 1 ) {
         for my $x ( 0 .. $w - 1 ) {
             my $iter = $julia->point( $x, $y );
