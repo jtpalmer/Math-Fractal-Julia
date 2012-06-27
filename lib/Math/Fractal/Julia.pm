@@ -30,6 +30,8 @@ sub new {
 
 __END__
 
+=pod
+
 =head1 SYNOPSIS
 
     use Math::Fractal::Julia;
