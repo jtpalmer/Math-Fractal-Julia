@@ -1,6 +1,7 @@
 Revision history for Math-Fractal-Julia.
 
 {{$NEXT}}
+    - Changed some tests
     - Improved documentation
 
 0.000003 2012-06-23

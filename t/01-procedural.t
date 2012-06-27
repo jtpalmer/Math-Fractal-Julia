@@ -1,11 +1,10 @@
-#!perl
 use strict;
 use warnings;
 use Test::More;
 use Math::Fractal::Julia;
 
 can_ok( 'Math::Fractal::Julia',
-    qw( set_max_iter set_limit set_bounds set_constant ) );
+    qw( set_max_iter set_limit set_bounds set_constant point ) );
 
 eval {
     Math::Fractal::Julia->set_max_iter(4);
